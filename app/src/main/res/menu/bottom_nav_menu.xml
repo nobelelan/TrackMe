@@ -8,9 +8,19 @@
         />
 
     <item
+        android:id="@+id/chat_nav_graph"
+        android:title="Chat"
+        android:icon="@drawable/ic_chat"
+        />
+
+    <item
         android:id="@+id/find_friends_nav_graph"
-        android:title="Find Friends"
+        android:title="Search"
         android:icon="@drawable/ic_search"/>
 
+    <item
+        android:id="@+id/settings_nav_graph"
+        android:title="Settings"
+        android:icon="@drawable/ic_settings"/>
 
 </menu>

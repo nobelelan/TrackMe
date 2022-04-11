@@ -42,7 +42,9 @@ class MainActivity : AppCompatActivity() {
     private fun setUpBottomNav() {
         val graphIds = listOf(
             R.navigation.home_nav_graph,
-            R.navigation.find_friends_nav_graph
+            R.navigation.find_friends_nav_graph,
+            R.navigation.settings_nav_graph,
+            R.navigation.chat_nav_graph
         )
         val controller = binding.bottomNavView.setupWithNavController(
             graphIds,
