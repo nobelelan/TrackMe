@@ -8,7 +8,6 @@ import android.view.MenuItem
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
 import com.example.trackme.R
 import com.example.trackme.databinding.ActivityMainBinding
@@ -24,7 +23,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        // Add toolbar as actionbar
         setSupportActionBar(binding.toolbar)
+        // Fix bottomnav with fab background issue
+        binding.bottomNavView.background = null
 
         if (savedInstanceState == null)
             setUpBottomNav()
