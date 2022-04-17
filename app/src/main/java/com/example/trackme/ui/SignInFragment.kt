@@ -53,15 +53,15 @@ class SignInFragment : Fragment() {
         binding.loginButton.registerCallback(callbackManager, object :
             FacebookCallback<LoginResult> {
             override fun onSuccess(result: LoginResult) {
-                Log.d(TAG, "facebook:onSuccess:$result")
-                handleFacebookAccessToken(result.accessToken)
-//                val graphRequest = GraphRequest.newMeRequest(result.accessToken){`object` , response ->
-//                    getFacebookData(`object`)
-//                }
-//                val parameters = Bundle()
-//                parameters.putString("fields","id,email,birthday,friends,gender,name")
-//                graphRequest.parameters = parameters
-//                graphRequest.executeAsync()
+//                Log.d(TAG, "facebook:onSuccess:$result")
+//                handleFacebookAccessToken(result.accessToken)
+                val graphRequest = GraphRequest.newMeRequest(result.accessToken){`object` , response ->
+                    getFacebookData(`object`)
+                }
+                val parameters = Bundle()
+                parameters.putString("fields","id,email,birthday,friends,gender,name")
+                graphRequest.parameters = parameters
+                graphRequest.executeAsync()
             }
 
             override fun onCancel() {
@@ -75,46 +75,46 @@ class SignInFragment : Fragment() {
 
     }
 
-//    private fun getFacebookData(obj: JSONObject?) {
-//        val profilePic = "https://graph.facebook.com/${obj?.getString("id")}/picture?width=50&height=50"
-//        Glide.with(this)
-//            .load(profilePic)
-//            .into(binding.ivProfile)
-//
-//        val name = obj?.getString("name")
-//        val birthday = obj?.getString("birthday")
-//        val gender = obj?.getString("gender")
-//        val total_count = obj?.getJSONObject("friends")?.getJSONObject("summary")?.getString("total_count")
-//        val email = obj?.getString("email")
-//
-//        binding.tvEmail.text = "Email: ${email}"
-//        binding.tvName.text = "Name: ${name}"
-//        binding.tvGender.text = "Gender: ${gender}"
-//        binding.tvBirthday.text = "Birthday: ${birthday}"
-//        binding.tvFriends.text = "Friends: ${total_count}"
-//    }
+    private fun getFacebookData(obj: JSONObject?) {
+        val profilePic = "https://graph.facebook.com/${obj?.getString("id")}/picture?width=50&height=50"
+        Glide.with(this)
+            .load(profilePic)
+            .into(binding.ivProfile)
 
-    private fun handleFacebookAccessToken(token: AccessToken) {
-        Log.d(TAG, "handleFacebookAccessToken:$token")
+        val name = obj?.getString("name")
+        val birthday = obj?.getString("birthday")
+        val gender = obj?.getString("gender")
+        val total_count = obj?.getJSONObject("friends")?.getJSONObject("summary")?.getString("total_count")
+        val email = obj?.getString("email")
 
-        val credential = FacebookAuthProvider.getCredential(token.token)
-        auth.signInWithCredential(credential)
-            .addOnCompleteListener() { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "signInWithCredential:success")
-                    val user = auth.currentUser
-                    binding.tvName.text = user?.displayName
-//                    updateUI(user)
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w(TAG, "signInWithCredential:failure", task.exception)
-                    Toast.makeText(requireContext(), "Authentication failed.",
-                        Toast.LENGTH_SHORT).show()
-//                    updateUI(null)
-                }
-            }
+        binding.tvEmail.text = "Email: ${email}"
+        binding.tvName.text = "Name: ${name}"
+        binding.tvGender.text = "Gender: ${gender}"
+        binding.tvBirthday.text = "Birthday: ${birthday}"
+        binding.tvFriends.text = "Friends: ${total_count}"
     }
+
+//    private fun handleFacebookAccessToken(token: AccessToken) {
+//        Log.d(TAG, "handleFacebookAccessToken:$token")
+//
+//        val credential = FacebookAuthProvider.getCredential(token.token)
+//        auth.signInWithCredential(credential)
+//            .addOnCompleteListener(requireActivity()) { task ->
+//                if (task.isSuccessful) {
+//                    // Sign in success, update UI with the signed-in user's information
+//                    Log.d(TAG, "signInWithCredential:success")
+//                    val user = auth.currentUser
+//                    binding.tvName.text = user?.displayName
+////                    updateUI(user)
+//                } else {
+//                    // If sign in fails, display a message to the user.
+//                    Log.w(TAG, "signInWithCredential:failure", task.exception)
+//                    Toast.makeText(requireContext(), "Authentication failed.",
+//                        Toast.LENGTH_SHORT).show()
+////                    updateUI(null)
+//                }
+//            }
+//    }
 
 
     // ...
