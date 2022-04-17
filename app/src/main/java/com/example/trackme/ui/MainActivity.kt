@@ -3,8 +3,6 @@ package com.example.trackme.ui
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController

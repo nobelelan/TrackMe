@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "79458626643",
+    "project_id": "trackme-ba9b9",
+    "storage_bucket": "trackme-ba9b9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:79458626643:android:5036b4b105796af1eaeaa6",
+        "android_client_info": {
+          "package_name": "com.example.trackme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "79458626643-0etoiueosdoghni4etiu0d1bn45molje.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.trackme",
+            "certificate_hash": "d54985acc0f9b93221f89aca6f000915303bb6ea"
+          }
+        },
+        {
+          "client_id": "79458626643-hihinqj8ppclh8tpi85rikcpbgsm2sgd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFV0g8m69vS9E0pP5e0QXygL1DivwS_Tw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "79458626643-hihinqj8ppclh8tpi85rikcpbgsm2sgd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
