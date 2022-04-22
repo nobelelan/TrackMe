@@ -53,8 +53,8 @@ class SignInFragment : Fragment() {
         binding.loginButton.registerCallback(callbackManager, object :
             FacebookCallback<LoginResult> {
             override fun onSuccess(result: LoginResult) {
-//                Log.d(TAG, "facebook:onSuccess:$result")
-//                handleFacebookAccessToken(result.accessToken)
+                Log.d(TAG, "facebook:onSuccess:$result")
+                handleFacebookAccessToken(result.accessToken)
                 val graphRequest = GraphRequest.newMeRequest(result.accessToken){`object` , response ->
                     getFacebookData(`object`)
                 }
@@ -76,7 +76,7 @@ class SignInFragment : Fragment() {
     }
 
     private fun getFacebookData(obj: JSONObject?) {
-        val profilePic = "https://graph.facebook.com/${obj?.getString("id")}/picture?width=50&height=50"
+        val profilePic = "https://graph.facebook.com/${obj?.getString("id")}/picture?width=200&height=200"
         Glide.with(this)
             .load(profilePic)
             .into(binding.ivProfile)
@@ -94,27 +94,27 @@ class SignInFragment : Fragment() {
         binding.tvFriends.text = "Friends: ${total_count}"
     }
 
-//    private fun handleFacebookAccessToken(token: AccessToken) {
-//        Log.d(TAG, "handleFacebookAccessToken:$token")
-//
-//        val credential = FacebookAuthProvider.getCredential(token.token)
-//        auth.signInWithCredential(credential)
-//            .addOnCompleteListener(requireActivity()) { task ->
-//                if (task.isSuccessful) {
-//                    // Sign in success, update UI with the signed-in user's information
-//                    Log.d(TAG, "signInWithCredential:success")
-//                    val user = auth.currentUser
-//                    binding.tvName.text = user?.displayName
-////                    updateUI(user)
-//                } else {
-//                    // If sign in fails, display a message to the user.
-//                    Log.w(TAG, "signInWithCredential:failure", task.exception)
-//                    Toast.makeText(requireContext(), "Authentication failed.",
-//                        Toast.LENGTH_SHORT).show()
-////                    updateUI(null)
-//                }
-//            }
-//    }
+    private fun handleFacebookAccessToken(token: AccessToken) {
+        Log.d(TAG, "handleFacebookAccessToken:$token")
+
+        val credential = FacebookAuthProvider.getCredential(token.token)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(requireActivity()) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(TAG, "signInWithCredential:success")
+                    val user = auth.currentUser
+                    binding.tvName.text = user?.displayName
+//                    updateUI(user)
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w(TAG, "signInWithCredential:failure", task.exception)
+                    Toast.makeText(requireContext(), "Authentication failed.",
+                        Toast.LENGTH_SHORT).show()
+//                    updateUI(null)
+                }
+            }
+    }
 
 
     // ...
