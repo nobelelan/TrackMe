@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.trackme.R
 import com.example.trackme.databinding.FragmentSignInBinding
@@ -55,13 +56,13 @@ class SignInFragment : Fragment() {
             override fun onSuccess(result: LoginResult) {
                 Log.d(TAG, "facebook:onSuccess:$result")
                 handleFacebookAccessToken(result.accessToken)
-                val graphRequest = GraphRequest.newMeRequest(result.accessToken){`object` , response ->
-                    getFacebookData(`object`)
-                }
-                val parameters = Bundle()
-                parameters.putString("fields","id,email,birthday,friends,gender,name")
-                graphRequest.parameters = parameters
-                graphRequest.executeAsync()
+//                val graphRequest = GraphRequest.newMeRequest(result.accessToken){`object` , response ->
+//                    getFacebookData(`object`)
+//                }
+//                val parameters = Bundle()
+//                parameters.putString("fields","id,email,birthday,friends,gender,name")
+//                graphRequest.parameters = parameters
+//                graphRequest.executeAsync()
             }
 
             override fun onCancel() {
