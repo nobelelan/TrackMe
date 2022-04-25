@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.trackme.R
 import com.example.trackme.databinding.FragmentHomeBinding
+import com.google.firebase.auth.FirebaseAuth
 
 
 class HomeFragment : Fragment() {
@@ -15,6 +16,8 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,11 +31,21 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentHomeBinding.bind(view)
 
+        auth = FirebaseAuth.getInstance()
+
         val navController = findNavController()
 
         binding.btnDetails.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment()
             navController.navigate(action)
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val currentUser = auth.currentUser
+        if (currentUser == null){
+            findNavController().navigate(R.id.signInFragment)
         }
     }
 
